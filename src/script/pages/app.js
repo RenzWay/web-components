@@ -1,6 +1,12 @@
 import HomePage from "./home.jsx";
 import AddPage from "./add.jsx";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  HashRouter,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FooterBottom } from "../components/footer.jsx";
 
@@ -31,9 +37,9 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AnimatedRoutes />
       <FooterBottom />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
