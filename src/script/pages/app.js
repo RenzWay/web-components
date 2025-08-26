@@ -9,10 +9,6 @@ const routeLink = [
     path: "/",
     element: <HomePage />,
   },
-  {
-    path: "/add",
-    element: <AddPage />,
-  },
 ];
 
 function AnimatedRoutes() {
@@ -37,7 +33,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <AnimatedRoutes />
-      <FooterBottom/>
+      <FooterBottom />
     </BrowserRouter>
   );
 }
