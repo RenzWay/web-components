@@ -10,9 +10,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        use: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              ["@babel/preset-env"],
+              ["@babel/preset-react", { runtime: "automatic" }],
+            ],
+          },
+        },
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -30,6 +38,6 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".js", "jsx"],
   },
 };

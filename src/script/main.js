@@ -1,13 +1,11 @@
 import "../style/style.css";
 import "../style/base.scss";
-import App from "./app/app.js";
+import * as bootrap from "bootstrap";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./pages/app";
 
-document.addEventListener("DOMContentLoaded", async function () {
-  const content = document.getElementById("content");
-  const app = new App({ content });
+const content = document.getElementById("content");
+const root = createRoot(content);
 
-  await app.renderPage();
-  window.addEventListener("hashchange", async function () {
-    await app.renderPage();
-  });
-});
+root.render(<App />);

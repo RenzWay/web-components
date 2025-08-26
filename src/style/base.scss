@@ -1,0 +1,44 @@
+.home-section {
+  height: auto;
+
+  #headerSection {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+footer {
+  margin-top: 1em;
+  height: 7rem;
+  background-color: #141301;
+  color: white;
+}
+
+.github-icon {
+  text-align: center;
+  padding: 3px;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #141301;
+    color: #e5e5e5;
+    cursor: pointer;
+  }
+}
+
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.custom-grid-item {
+  display: flex;
+  flex-direction: column;
+}
