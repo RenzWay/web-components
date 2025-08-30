@@ -1,7 +1,8 @@
 import { createHighlighter } from "shiki";
 import { useEffect, useState } from "react";
 import { ChevronsDownUp } from "lucide-react";
-import { btn, alrt, modal } from "./models.jsx";
+import { btn, alrt, modal, placeholders } from "./models.jsx";
+import { PlaceholderCard } from "../components/placeholder.jsx";
 
 export default function LibView({ query }) {
   const [highlightedCodes, setHighlightedCodes] = useState({});
@@ -51,17 +52,21 @@ export default function LibView({ query }) {
 
   const getFilteredData = () => {
     if (!query.trim()) {
-      return { button: btn, alert: alrt, modal: modal };
+      return { button: btn, alert: alrt, modal: modal, placeholders };
     }
 
     const filteredBtn = btn.filter((b) => filterFn(b, "button"));
     const filteredAlrt = alrt.filter((b) => filterFn(b, "alert"));
     const filteredModal = modal.filter((b) => filterFn(b, "modal"));
+    const filteredPlaceholders = placeholders.filter((p) =>
+      p.title.toLowerCase().includes(query.toLowerCase())
+    );
 
     return {
       button: filteredBtn,
       alert: filteredAlrt,
       modal: filteredModal,
+      placeholders: filteredPlaceholders,
     };
   };
 
@@ -69,6 +74,7 @@ export default function LibView({ query }) {
     button: filterBtn,
     alert: filterAlrt,
     modal: filterModal,
+    placeholders: filteredPlaceholders,
   } = getFilteredData();
 
   return (
@@ -113,7 +119,6 @@ export default function LibView({ query }) {
           </section>
         </section>
       )}
-
       {(filterAlrt.length > 0 || !query) && (
         <section className="card mt-5">
           <header className="card-header">
@@ -154,7 +159,6 @@ export default function LibView({ query }) {
           </section>
         </section>
       )}
-
       {(filterModal.length > 0 || !query) && (
         <section className="card mt-5">
           <header className="card-header">
@@ -195,7 +199,31 @@ export default function LibView({ query }) {
           </section>
         </section>
       )}
-
+      {filteredPlaceholders.length > 0 && (
+        <section className="card mt-5">
+          <header className="card-header">
+            <h3>Placeholders</h3>
+          </header>
+          <section className="card-body">
+            <div className="custom-grid">
+              <PlaceholderCard />
+              {filteredPlaceholders.map((p, idx) => (
+                <div className="custom-grid-item" key={idx}>
+                  <div className="card h-100">
+                    <div className="card-header">
+                      <h5>{p.title}</h5>
+                    </div>
+                    <div className="card-body p-3">{p.content}</div>
+                    <div className="card-footer">
+                      <pre>{p.code}</pre>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </section>
+      )}
       {query &&
         filterBtn.length === 0 &&
         filterAlrt.length === 0 &&

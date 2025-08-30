@@ -1,6 +1,7 @@
 import { ButtonBs } from "../components/button.jsx";
 import { AlertBs } from "../components/alert.jsx";
 import { ModalBs, ModalStatic } from "../components/modal.jsx";
+import { Placeholder } from "../components/placeholder.jsx";
 
 const variants = [
   "primary",
@@ -138,3 +139,18 @@ export const modal = [
 `,
   },
 ];
+
+const placeholderVariants = [
+  { width: "100%", height: "200px", className: "mb-3" },
+  { width: "60%", height: "20px", className: "" },
+  { width: "90%", height: "10px", className: "mb-2" },
+  { width: "75%", height: "10px", className: "mb-2" },
+  { width: "50%", height: "10px", className: "" },
+  { width: "50%", height: "35px", className: "btn btn-primary disabled" },
+];
+
+export const placeholders = placeholderVariants.map((variant, index) => ({
+  title: `Placeholder ${index + 1}`,
+  content: <Placeholder {...variant} />,
+  code: `<Placeholder width=\"${variant.width}\" height=\"${variant.height}\" className=\"${variant.className}\" />`,
+}));
